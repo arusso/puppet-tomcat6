@@ -2,7 +2,6 @@ define tomcat6::instance (
   $account = undef,
   $ajp_port = undef,
   $http_port = undef,
-  $name = $title,
   $shutdown_port = undef,
   $home_group = undef,
   $log_group = undef

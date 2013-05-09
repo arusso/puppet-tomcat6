@@ -1,5 +1,5 @@
 name    'arusso-tomcat6'
-version '0.0.1'
+version '0.0.2'
 source 'https://github.com/arusso23/puppet-tomcat6'
 author 'arusso'
 license 'none'
