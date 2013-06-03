@@ -28,4 +28,4 @@ Support
 -------
 
 Please log tickets and issues at the
-[Projects site](https://github.com/arusso23/puppet-tomcat6/issues/)
+[Projects site](https://github.com/arusso/puppet-tomcat6/issues/)

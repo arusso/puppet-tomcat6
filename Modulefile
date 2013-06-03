@@ -1,10 +1,10 @@
 name    'arusso-tomcat6'
-version '0.0.2'
-source 'https://github.com/arusso23/puppet-tomcat6'
+version '0.0.3'
+source 'https://github.com/arusso/puppet-tomcat6'
 author 'arusso'
 license 'none'
 summary 'a tomcat6 module that supports multiple instances'
 description 'a tomcat6 module that supports multiple instances'
-project_page 'https://github.com/arusso23/puppet-tomcat6'
+project_page 'https://github.com/arusso/puppet-tomcat6'
 
 dependency 'puppetlabs/stdlib', '>= 2.6.0'
