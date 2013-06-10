@@ -20,6 +20,7 @@ define tomcat6::instance (
 
   file { "/etc/sysconfig/tomcat6-${name}":
     ensure  => file,
+    replace => false,
     owner   => 'root',
     group   => 'root',
     mode    => '0444',
