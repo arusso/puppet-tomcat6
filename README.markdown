@@ -17,7 +17,12 @@ This module provides mechanisms to manage tomcat6 instances
 License
 -------
 
-None
+See LICENSE file
+
+Copyright
+---------
+
+Copyright &copy; 2014 The Regents of the University of California
 
 Contact
 -------
