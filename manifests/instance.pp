@@ -1,12 +1,45 @@
+# == Define: tomcat6::instance
+#
+# Setup a tomcat6 instance
+#
+# === Parameters:
+#
+# [*account*]
+#   (Required) Account that should own the files
+#
+# [*ajp_port*]
+#   AJP port for this instance. Defaults to 8011.
+#
+# [*home_group*]
+#   Group that should own the configuration files in the home directory. If
+#   left unset, defaults to $account.
+#
+# [*http_port*]
+#   HTTP port for this instance. Defaults to 8080.
+#
+# [*log_group*]
+#   Group that should own the log files. If unset, defaults to $account
+#
+# [*redirect_port*]
+#   Redirect port of this instance. Defaults to 8443.
+#
+# [*shutdown_port*]
+#   Shutdown port for this instance. Defaults to 8005.
+#
 define tomcat6::instance (
-  $account = undef,
-  $ajp_port = undef,
-  $http_port = undef,
-  $shutdown_port = undef,
+  $account = 'UNSET',
+  $ajp_port = '8011',
+  $http_port = '8080',
   $home_group = undef,
-  $log_group = undef
+  $log_group = undef,
+  $redirect_port = '8443',
+  $shutdown_port = '8005',
 ) {
   include tomcat6
+
+  if $account == 'UNSET' {
+    fail("account must be set for Tomcat6::Instance${::title}]")
+  }
 
   $home_group_r = $home_group ? {
     undef   => $account,
