@@ -1,3 +1,10 @@
+2014-01-28 Aaron Russo <arusso@berkeley.edu> - 0.0.4
+* add LICENSE file
+* issue #1 - add ability to specify redirect port
+* clean up extra comments in the server.xml file template
+* fully document classes and defines
+* add spec tests for all classes and defines
+
 2013-06-02 Aaron Russo <arusso@berkeley.edu> - 0.0.3
 * updating docs for acct rename
 
