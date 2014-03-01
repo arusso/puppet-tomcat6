@@ -26,6 +26,14 @@
 # [*shutdown_port*]
 #   Shutdown port for this instance. Defaults to 8005.
 #
+# [*service_enable*]
+#   Service enable state. Should be 'enabled/disabled/ignore'. Default is
+#   'enabled'.
+#
+# [*service_ensure*]
+#   Service ensure state. Should be either 'running/stopped/ignore'. Default is
+#   'running'
+#
 define tomcat6::instance (
   $account = 'UNSET',
   $ajp_port = '8011',
@@ -34,6 +42,8 @@ define tomcat6::instance (
   $log_group = undef,
   $redirect_port = '8443',
   $shutdown_port = '8005',
+  $service_enable = 'enabled',
+  $service_ensure = 'running',
 ) {
   include tomcat6
 
@@ -145,8 +155,25 @@ define tomcat6::instance (
   #######
   # Service Configuration
   #######
+  case $service_enable {
+    /^enable/,true: { $service_enable_r = true }
+    /^disable/,false: { $service_enable_r = false }
+    /^ignore|noop$/: { $service_enable_r = undef }
+    default: {
+      fail("invalid value for service_enable specified. '${service_enable}'")
+    }
+  }
+  case $service_ensure {
+    /^run/,true: { $service_ensure_r = true }
+    /^stop/,false: { $service_ensure_r = false }
+    /^ignore|noop$/: { $service_ensure_r = undef }
+    default: {
+      fail("invalid value for service_ensure specified. '${service_ensure}'")
+    }
+  }
   service { "tomcat6-${name}":
-    enable  => true,
+    ensure  => $service_ensure_r,
+    enable  => $service_enable_r,
     require => File["/etc/init.d/tomcat6-${name}"],
   }
 }
