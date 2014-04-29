@@ -98,6 +98,7 @@ define tomcat6::instance (
                 "/home/${account}/tomcat6-${name}/Catalina",
                 "/home/${account}/tomcat6-${name}/Catalina/localhost",
                 "/home/${account}/tomcat6-${name}/Catalina/lib",
+                "/home/${account}/tomcat6-${name}/lib",
                 "/home/${account}/tomcat6-${name}/webapps" ]
 
   file { $app_dirs:
