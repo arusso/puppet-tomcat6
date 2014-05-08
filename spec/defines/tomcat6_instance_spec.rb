@@ -40,10 +40,9 @@ describe( 'tomcat6::instance', :type => :define) do
         # ensure our application dirs are setup
         app_dirs = [
           '/home/someapp_account/tomcat6-someapp',
-          '/home/someapp_account/tomcat6-someapp/Catalina',
-          '/home/someapp_account/tomcat6-someapp/Catalina/localhost',
-          '/home/someapp_account/tomcat6-someapp/Catalina/lib',
+          '/home/someapp_account/tomcat6-someapp/conf/Catalina',
           '/home/someapp_account/tomcat6-someapp/webapps',
+          '/home/someapp_account/tomcat6-someapp/lib',
         ]
         app_dirs.each do |ad|
           should contain_file(ad).with({
@@ -89,7 +88,7 @@ describe( 'tomcat6::instance', :type => :define) do
          'source' => 'puppet:///modules/tomcat6/app-home/',
          'owner' => 'someapp_account',
          'group' => 'someapp_account',
-         'mode' => '0664',
+         'mode' => '2644',
         })
 
         # check for our initial config
@@ -98,7 +97,7 @@ describe( 'tomcat6::instance', :type => :define) do
           'replace' => false,
           'owner' => 'someapp_account',
           'group' => 'someapp_account',
-          'mode' => '0664',
+          'mode' => '0644',
         })
 
         # check to make sure expected config settings are there
@@ -157,9 +156,7 @@ describe( 'tomcat6::instance', :type => :define) do
       end
       home_dirs = [
         '/home/someapp_acct/tomcat6-someapp',
-        '/home/someapp_acct/tomcat6-someapp/Catalina',
-        '/home/someapp_acct/tomcat6-someapp/Catalina/localhost',
-        '/home/someapp_acct/tomcat6-someapp/Catalina/lib',
+        '/home/someapp_acct/tomcat6-someapp/conf/Catalina',
         '/home/someapp_acct/tomcat6-someapp/lib',
         '/home/someapp_acct/tomcat6-someapp/webapps',
       ]
