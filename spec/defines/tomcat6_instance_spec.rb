@@ -88,7 +88,7 @@ describe( 'tomcat6::instance', :type => :define) do
          'source' => 'puppet:///modules/tomcat6/app-home/',
          'owner' => 'someapp_account',
          'group' => 'someapp_account',
-         'mode' => '2644',
+         'mode' => '0644',
         })
 
         # check for our initial config
