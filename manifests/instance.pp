@@ -150,7 +150,7 @@ define tomcat6::instance (
     source  => 'puppet:///modules/tomcat6/app-home/',
     owner   => $home_owner_r,
     group   => $home_group_r,
-    mode    => '2644',
+    mode    => '0644',
   }
 
   file { "/home/${account}/tomcat6-${name}/conf/server.xml":
