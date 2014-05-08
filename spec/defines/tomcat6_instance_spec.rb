@@ -144,7 +144,7 @@ describe( 'tomcat6::instance', :type => :define) do
       end # context - with port overrides
     end
 
-    context "test override of home account" do
+    context "test override of home owner and group" do
       let :title do
         'someapp'
       end
