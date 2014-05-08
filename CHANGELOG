@@ -1,3 +1,8 @@
+2014-05-08 Aaron Russo <arusso@berkeley.edu> - 0.1.0
+* fix layout of instance directories
+* harden permissions for instance resources slightly
+* allow override of owner of file/dir in instance home
+
 2014-02-28 Aaron Russo <arusso@berkeley.edu> - 0.0.5
 * add ability to manage instance service state
 
