@@ -105,9 +105,7 @@ define tomcat6::instance (
   # Application Home Resources
   #######
   $app_dirs = [ "/home/${account}/tomcat6-${name}",
-                "/home/${account}/tomcat6-${name}/Catalina",
-                "/home/${account}/tomcat6-${name}/Catalina/localhost",
-                "/home/${account}/tomcat6-${name}/Catalina/lib",
+                "/home/${account}/tomcat6-${name}/conf/Catalina",
                 "/home/${account}/tomcat6-${name}/lib",
                 "/home/${account}/tomcat6-${name}/webapps" ]
 
@@ -136,7 +134,7 @@ define tomcat6::instance (
 
   file { "/home/${account}/tomcat6-${name}/bin":
     ensure => link,
-    owner  => $account,
+    owner  => $home_owner_r,
     group  => $home_group_r,
     mode   => '2775',
     target => '/usr/share/tomcat6/bin',
@@ -150,17 +148,17 @@ define tomcat6::instance (
     recurse => true,
     purge   => false,
     source  => 'puppet:///modules/tomcat6/app-home/',
-    owner   => $account,
+    owner   => $home_owner_r,
     group   => $home_group_r,
-    mode    => '0664',
+    mode    => '2644',
   }
 
   file { "/home/${account}/tomcat6-${name}/conf/server.xml":
     replace => false,
     content => template('tomcat6/server-xml.erb'),
-    owner   => $account,
+    owner   => $home_owner_r,
     group   => $home_group_r,
-    mode    => '0664',
+    mode    => '0644',
   }
 
   #######
