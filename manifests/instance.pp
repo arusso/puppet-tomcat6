@@ -14,6 +14,10 @@
 #   Group that should own the configuration files in the home directory. If
 #   left unset, defaults to $account.
 #
+# [*home_owner*]
+#   Owner that should own the configuration files in the home directory. If
+#   left unset, defaults to $account.
+#
 # [*http_port*]
 #   HTTP port for this instance. Defaults to 8080.
 #
@@ -38,6 +42,7 @@ define tomcat6::instance (
   $account = 'UNSET',
   $ajp_port = '8011',
   $http_port = '8080',
+  $home_owner = undef,
   $home_group = undef,
   $log_group = undef,
   $redirect_port = '8443',
@@ -59,6 +64,11 @@ define tomcat6::instance (
   $log_group_r = $log_group ? {
     undef   => $account,
     default => $log_group,
+  }
+
+  $home_owner_r = $home_owner ? {
+    undef   => $account,
+    default => $home_owner,
   }
 
   file { "/etc/sysconfig/tomcat6-${name}":
@@ -104,7 +114,7 @@ define tomcat6::instance (
   file { $app_dirs:
     ensure  => directory,
     replace => false,
-    owner   => $account,
+    owner   => $home_owner_r,
     group   => $home_group_r,
     mode    => '2775',
   }

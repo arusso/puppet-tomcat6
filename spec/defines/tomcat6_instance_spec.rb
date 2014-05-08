@@ -143,5 +143,35 @@ describe( 'tomcat6::instance', :type => :define) do
         end # it do
       end # context - with port overrides
     end
+
+    context "test override of home account" do
+      let :title do
+        'someapp'
+      end
+      let :params do
+        {
+          'account' => 'someapp_acct',
+          'home_owner' => 'content_acct',
+          'home_group' => 'content_group',
+        }
+      end
+      home_dirs = [
+        '/home/someapp_acct/tomcat6-someapp',
+        '/home/someapp_acct/tomcat6-someapp/Catalina',
+        '/home/someapp_acct/tomcat6-someapp/Catalina/localhost',
+        '/home/someapp_acct/tomcat6-someapp/Catalina/lib',
+        '/home/someapp_acct/tomcat6-someapp/lib',
+        '/home/someapp_acct/tomcat6-someapp/webapps',
+      ]
+      it do
+        home_dirs.each do |d|
+          should contain_file(d).with({
+            'ensure' => 'directory',
+            'owner' => 'content_acct',
+            'group' => 'content_group',
+          })
+        end
+      end
+    end
   end
 end
