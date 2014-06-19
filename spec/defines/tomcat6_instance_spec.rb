@@ -80,6 +80,16 @@ describe( 'tomcat6::instance', :type => :define) do
           'target' => '/usr/share/tomcat6/bin',
         })
 
+        # setup some additional links
+        should contain_file('/home/someapp_account/tomcat6-someapp/temp').with({
+          'ensure' => 'link',
+          'target' => '/var/cache/tomcat6-someapp/temp',
+        })
+        should contain_file('/home/someapp_account/tomcat6-someapp/work').with({
+          'ensure' => 'link',
+          'target' => '/var/cache/tomcat6-someapp/work',
+        })
+
         # check for the initial setup of the app home dir
         should contain_file('/home/someapp_account/tomcat6-someapp/conf').with({
          'replace' => false,
