@@ -1,4 +1,4 @@
-2014-06-19 Aaron Russo <arusso@berkeley.edu> _ 0.1.1
+2014-06-19 Aaron Russo <arusso@berkeley.edu> - 0.1.1
 * fix bug where links to work/temp space were not deployed
 * fix bug where permissions of cache space could be wrong
 
