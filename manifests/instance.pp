@@ -96,8 +96,8 @@ define tomcat6::instance (
                   "/var/cache/tomcat6-${name}/work" ]
   file { $cache_dirs:
     ensure  => directory,
-    owner   => $account,
-    group   => $account,
+    owner   => $home_owner_r,
+    group   => $home_group_r,
     mode    => '2775',
   }
 
@@ -138,6 +138,15 @@ define tomcat6::instance (
     group  => $home_group_r,
     mode   => '2775',
     target => '/usr/share/tomcat6/bin',
+  }
+
+  file { "/home/${account}/tomcat6-${name}/temp":
+    ensure => link,
+    target => "/var/cache/tomcat6-${name}/temp",
+  }
+  file { "/home/${account}/tomcat6-${name}/work":
+    ensure => link,
+    target => "/var/cache/tomcat6-${name}/work",
   }
 
   #######
