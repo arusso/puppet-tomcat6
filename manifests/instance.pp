@@ -96,8 +96,8 @@ define tomcat6::instance (
                   "/var/cache/tomcat6-${name}/work" ]
   file { $cache_dirs:
     ensure  => directory,
-    owner   => $account,
-    group   => $account,
+    owner   => $home_owner_r,
+    group   => $home_group_r,
     mode    => '2775',
   }
 
