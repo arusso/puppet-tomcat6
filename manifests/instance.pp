@@ -140,6 +140,15 @@ define tomcat6::instance (
     target => '/usr/share/tomcat6/bin',
   }
 
+  file { "/home/${account}/tomcat6-${name}/temp":
+    ensure => link,
+    target => "/var/cache/tomcat6-${name}/temp",
+  }
+  file { "/home/${account}/tomcat6-${name}/work":
+    ensure => link,
+    target => "/var/cache/tomcat6-${name}/work",
+  }
+
   #######
   # Initial Configuration Files
   #######
