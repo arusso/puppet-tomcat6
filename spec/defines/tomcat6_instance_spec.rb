@@ -90,6 +90,14 @@ describe( 'tomcat6::instance', :type => :define) do
           'target' => '/var/cache/tomcat6-someapp/work',
         })
 
+        # ensure our cache directory is setup properly
+        should contain_file('/var/cache/tomcat6-someapp').with({
+          'ensure' => 'directory',
+          'owner' => 'someapp_account',
+          'group' => 'someapp_account',
+          'mode' => '2775',
+        })
+
         # check for the initial setup of the app home dir
         should contain_file('/home/someapp_account/tomcat6-someapp/conf').with({
          'replace' => false,
@@ -169,6 +177,9 @@ describe( 'tomcat6::instance', :type => :define) do
         '/home/someapp_acct/tomcat6-someapp/conf/Catalina',
         '/home/someapp_acct/tomcat6-someapp/lib',
         '/home/someapp_acct/tomcat6-someapp/webapps',
+        '/var/cache/tomcat6-someapp',
+        '/var/cache/tomcat6-someapp/work',
+        '/var/cache/tomcat6-someapp/temp',
       ]
       it do
         home_dirs.each do |d|
